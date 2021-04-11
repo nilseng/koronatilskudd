@@ -48,6 +48,24 @@ function App() {
         Disse tallene ble sist oppdatert{" "}
         {stats?.sistOppdatert &&
           new Date(stats?.sistOppdatert).toLocaleString()}
+        .
+      </p>
+      <p className="text-muted">
+        Denne siden er laget av{" "}
+        <a href="http://www.nilseng.com" target="__blank">
+          Teodor Nilseng Danielsen
+        </a>
+        .
+      </p>
+      <p className="text-muted">
+        All data er offentlig tilgjengelig via{" "}
+        <a
+          href="https://data.brreg.no/kompensasjonsordning/innsyn/"
+          target="__blank"
+        >
+          Brønnøysundregistrene
+        </a>
+        .
       </p>
     </Container>
   );
