@@ -22,7 +22,9 @@ function App() {
         <h1>
           {stats?.hittilTildelt && (+stats?.hittilTildelt)?.toLocaleString()}
         </h1>
-        <p>norske kroner er hittil tildelt i koronatilskudd. Lommerusk.</p>
+        <p>
+          norske kroner er hittil tildelt i koronatilskudd for næringslivet.
+        </p>
       </Jumbotron>
       <Row>
         <Col>
