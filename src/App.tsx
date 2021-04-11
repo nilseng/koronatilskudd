@@ -46,7 +46,8 @@ function App() {
       </Row>
       <p>
         Disse tallene ble sist oppdatert{" "}
-        {stats?.sistOppdatert && stats?.sistOppdatert}
+        {stats?.sistOppdatert &&
+          new Date(stats?.sistOppdatert).toLocaleString()}
       </p>
     </Container>
   );
