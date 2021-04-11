@@ -1,25 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Col, Container, Jumbotron, Row } from "react-bootstrap";
+import { getStatistics } from "./services/kompensasjonsService";
+
+interface Stats {
+  hittilTildelt: string;
+  antallTildelinger: number;
+  antallStottedeForetak: number;
+  sistOppdatert: string;
+}
 
 function App() {
+  const [stats, setStats] = useState<Stats>();
+
+  useEffect(() => {
+    getStatistics().then((res) => setStats(res));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Jumbotron className="bg-dark my-4">
+        <h1>
+          {stats?.hittilTildelt && (+stats?.hittilTildelt)?.toLocaleString()}
+        </h1>
+        <p>norske kroner er hittil tildelt i koronatilskudd. Lommerusk.</p>
+      </Jumbotron>
+      <Row>
+        <Col>
+          <Jumbotron className="bg-dark my-4">
+            <h1>
+              {stats?.antallTildelinger &&
+                (+stats?.antallTildelinger)?.toLocaleString()}
+            </h1>
+            <p>tildelinger er gjort så langt.</p>
+          </Jumbotron>
+        </Col>
+        <Col>
+          <Jumbotron className="bg-dark my-4">
+            <h1>
+              {stats?.antallStottedeForetak &&
+                (+stats?.antallStottedeForetak)?.toLocaleString()}
+            </h1>
+            <p>foretak har fått disse tildelingene.</p>
+          </Jumbotron>
+        </Col>
+      </Row>
+      <p>
+        Disse tallene ble sist oppdatert{" "}
+        {stats?.sistOppdatert && stats?.sistOppdatert}
+      </p>
+    </Container>
   );
 }
 
